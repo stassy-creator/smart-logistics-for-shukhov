@@ -42,7 +42,7 @@ salary = st.sidebar.slider("Зарплата 1 сотрудника (руб):", 
 penalty_per_unit = st.sidebar.slider("Размер рыночного штрафа за единицу (руб):", 500, 30000, int(base_penalty), 
                                      help="Штраф за каждую куртку, которую некому разгрузить в пиковые часы.")
 
-st.sidebar.subheader("📉 Факторы реальной логистики")
+st.sidebar.subheader("Факторы реальной логистики")
 turnover_waves = st.sidebar.slider("Интенсивность поставок (волн в месяц):", 1, 10, 2)
 # ИСПРАВЛЕННОЕ НАЗВАНИЕ ПОЛЗУНКА БРАКА
 defect_rate = st.sidebar.slider("Риск брака при поставке (%):", 0, 100, 3) / 100
