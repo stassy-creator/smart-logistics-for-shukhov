@@ -5,7 +5,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Smart-Logistics AI", layout="wide", page_icon="📈")
 
-st.title("📊 Автоматизация логистики МСБ: Тестовый прототип индивидуальной СППР")
+st.title("📊 Автоматизация логистики бизнеса: Тестовый прототип индивидуальной СППР")
 st.markdown("### Индивидуальная адаптивная модель для ритейла верхней одежды ИП «Шухов Ф.В.»")
 st.markdown("##### Исследовательский проект по теме: Разработка прототипа эволюционной системы поддержки принятия решений для оптимизации логистических ресурсов малого бизнеса на базе генетического алгоритма")
 
@@ -44,7 +44,7 @@ penalty_per_unit = st.sidebar.slider("Размер рыночного штраф
 
 st.sidebar.subheader("Факторы реальной логистики")
 turnover_waves = st.sidebar.slider("Интенсивность поставок (волн в месяц):", 1, 10, 2)
-# ИСПРАВЛЕННОЕ НАЗВАНИЕ ПОЛЗУНКА БРАКА
+
 defect_rate = st.sidebar.slider("Риск брака при поставке (%):", 0, 100, 3) / 100
 return_rate = st.sidebar.slider("Процент возврата товара после примерки (%):", 0, 100, 30)
 return_logistic_cost = 500  
@@ -91,7 +91,6 @@ def calculate_profit(chromosome):
     
     return total_revenue - total_purchase_costs - rent_costs - worker_costs - penalty_costs - total_returns_penalty
 
-# ОБНОВЛЕННАЯ СТИЛЬНАЯ КНОПКА
 if st.button("смоделировать оптимизацию ресурсов"):
     POPULATION_SIZE, GENERATIONS, MUTATION_RATE = 100, 100, 0.25
     population = [[random.randint(0, 400) for _ in range(5)] + [random.randint(10, 300), random.randint(1, 10)] for _ in range(POPULATION_SIZE)]
