@@ -93,12 +93,13 @@ def calculate_profit(chromosome):
 
 if st.button("смоделировать оптимизацию ресурсов"):
     POPULATION_SIZE, GENERATIONS, MUTATION_RATE = 100, 100, 0.25
-    population = [[random.randint(0, 400) for _ in range(5)] + [random.randint(10, 300), random.randint(1, 10)] for _ in range(POPULATION_SIZE)]
+    # Увеличили стартовый склад до 600 кв.м., чтобы хватало для 3-го сценария
+    population = [[random.randint(0, 400) for _ in range(5)] + [random.randint(50, 600), random.randint(1, 15)] for _ in range(POPULATION_SIZE)]
     history_best = []
     
     for gen in range(GENERATIONS):
         scored = [(calculate_profit(c), c) for c in population]
-        scored.sort(key=lambda x: x, reverse=True)
+        scored.sort(key=lambda x: x[0], reverse=True)
         history_best.append(scored[0][0])  
         
         winners = [c for s, c in scored[:30]]
@@ -109,16 +110,15 @@ if st.button("смоделировать оптимизацию ресурсов
             if random.random() < MUTATION_RATE:
                 for i in range(5): 
                     child[i] = max(0, child[i] + random.randint(-40, 40))
-                child[i] = max(10, child[5] + random.randint(-20, 20))
-                child[6] = max(1, child[6] + random.randint(-1, 1))
+                child[5] = max(10, child[5] + random.randint(-50, 50))
+                child[6] = max(1, child[6] + random.randint(-2, 2))
             new_pop.append(child)
         population = new_pop
         
     final_scored = [(calculate_profit(c), c) for c in population]
-    final_scored.sort(key=lambda x: x, reverse=True)
+    final_scored.sort(key=lambda x: x[0], reverse=True)
     best_score, best_chrom = final_scored[0]
-    
-    st.balloons()
+
     st.success("Алгоритм успешно адаптировался к заданным условиям среды индивидуальной модели!")
     
     c1, c2, c3 = st.columns(3)
